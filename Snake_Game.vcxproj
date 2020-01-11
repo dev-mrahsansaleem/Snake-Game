@@ -138,11 +138,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="cNode.h" />
     <ClInclude Include="cSnakeGame.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="implimentation.cpp" />
     <ClCompile Include="Source.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
