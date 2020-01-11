@@ -1,5 +1,6 @@
 #include<iostream>
 #include<conio.h>
+#include<utility>
 #include<Windows.h>
 using namespace std;
 template<class T,class C>
@@ -54,7 +55,7 @@ public:
 			head = temp;
 		}
 	}
-	void addToTail(T x,T y,C value='o')
+	void addToTail(T x,T y,C value='*')
 	{
 		node<T,C>* newNode = new node<T,C>(x,y,value);
 		if (isEmpty())
@@ -87,26 +88,21 @@ public:
 	void print()
 	{
 		system("CLS");
+/*
 		for (int i = 0; i < this->width; i++)
 			cout << "=";	//top border
 		cout << endl;
-
+*/
 		for (int i = 0; i < this->height; i++)
 		{
 			for (int j = 0; j < this->width; j++)
 			{
-				if (j == 0 || j == this->width - 1)
-					cout << "|";
+				//if (j == 0 || j == this->width - 1)
+				//	cout << "|";
 				if (i == this->head->y && j == this->head->x)
 					cout << this->head->value;
-				else if (
-					(i == this->fruitY[0] && j == this->fruitX[0]) ||
-					(i == this->fruitY[1] && j == this->fruitX[1]) ||
-					(i == this->fruitY[2] && j == this->fruitX[2])
-					)
-				{
+				else if ((i == this->fruitY[0] && j == this->fruitX[0]) ||(i == this->fruitY[1] && j == this->fruitX[1]) ||(i == this->fruitY[2] && j == this->fruitX[2]))
 					cout << "@";
-				}
 				else
 				{
 					bool print = false;
@@ -124,10 +120,11 @@ public:
 			}
 			cout << endl;
 		}
-
+/*
 		for (int i = 0; i < this->width; i++)
 			cout << "=";	//bellow border
 		cout << endl;
+*/
 	}
 	void createFruit(int eati)
 	{
@@ -137,8 +134,21 @@ public:
 	void onCollision()
 	{
 		//if touch walls game end
-		if (this->head->x<0 || this->head->x>this->width || this->head->y<0 || this->head->y>this->height)
-			this->gameOver = true;
+		//if (this->head->x<0 || this->head->x>this->width || this->head->y<0 || this->head->y>this->height)
+		//	this->gameOver = true;
+
+		//if go out of the boundry
+		if (this->head->x < 0)
+			this->head->x = width;
+		if (this->head->x > this->width)
+			this->head->x = 0;
+
+		if (this->head->y < 0)
+			this->head->y =this->height;
+		if (this->head->y > this->height)
+			this->head->y = 0;
+
+
 		if (this->head->x == this->fruitX[0] && this->head->y == fruitY[0])
 		{
 			score += 10;
@@ -262,7 +272,10 @@ public:
 		this->gameOver = false;
 		this->dir = STOP;
 		//center position
-		this->head = new node<int, char>(this->width / 2, this->height / 2, '0');
+		this->head = new node<int, char>(this->width / 2, this->height / 2, 153);
+		this->addToTail(this->head->x - 1, this->head->y);
+		this->addToTail(this->head->x - 2, this->head->y);
+		this->addToTail(this->head->x - 3, this->head->y);
 		//fruit position 1 for now
 		this->createFruit(0);
 		this->createFruit(1);

@@ -1,2 +1,6 @@
 ﻿  Source.cpp
+D:\git hub\Snake-Game\cSnakeGame.h(275,38): warning C4309: 'argument': truncation of constant value
+D:\git hub\Snake-Game\cSnakeGame.h(271): message : while compiling class template member function 'void snakeGame<int,char>::setup(void)'
+D:\git hub\Snake-Game\cSnakeGame.h(254): message : see reference to function template instantiation 'void snakeGame<int,char>::setup(void)' being compiled
+D:\git hub\Snake-Game\Source.cpp(6): message : see reference to class template instantiation 'snakeGame<int,char>' being compiled
   Snake_Game.vcxproj -> D:\git hub\Snake-Game\Debug\Snake_Game.exe
